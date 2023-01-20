@@ -1,0 +1,19 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+.logo{
+    font-size: 30px;
+    & a{
+        color: $mainColor;
+        text-decoration: none;
+
+    }
+}
+
+.App{
+    background-color: $mainBG;
+}
+

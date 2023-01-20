@@ -3,18 +3,18 @@ import { Link} from 'react-router-dom'
 
 export default function Navbar() {
   return (
-    <section>
+    <section className='navbar' >
       <nav>
         <ul>
-          <li>
-            <Link to='/'>Home</Link>
+          <li className='logo'>
+            <Link to='/'>FocusG</Link>
           </li>
+          {/* Tienda */}
+          {/* Sobre la tienda */}
           <li>
             <Link to="/login">Entrar</Link>
           </li>
-          <li>
-            <Link to="/registro">Registrarse</Link>
-          </li>
+          
         </ul>
       </nav>
     </section>
