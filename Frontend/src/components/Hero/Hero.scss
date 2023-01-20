@@ -1,0 +1,52 @@
+.Carousel{
+    height: 460px;
+    .sliderWrap{
+        display: flex;
+        justify-content: center;
+
+    }
+    .sliderInner{
+        width: 1096px;
+        height: 460px;
+        position: relative;
+        .sliderImg{
+            width:1096px;
+        }
+        .chachara {
+            height: 150px;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(0deg, rgba(2,0,36,0.8) 0%, rgba(2,0,28,0.6222688904663427) 38%, rgba(2,0,32,0.3981792546120011) 71%, rgba(0,0,0,0.1040616075531775) 100%);
+            // background: linear-gradient(rgba(0, 0, 0, 0.2) ,rgba(0, 0, 0, 0.8) );
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+
+            .deal p{
+                font-size: 20px;
+                color:White
+            }
+            .deal p:last-child{
+                font-size: 50px;
+                color:White
+            }
+            .BuyandPrice{
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                color:$mainColor;
+                font-size: 25px;
+            }
+            .mainScreen{
+                color:black;
+                font-size: 20px;
+                font-weight: normal;
+            }
+        }
+
+    }
+    
+}

@@ -1,12 +1,10 @@
 import React from 'react'
-import Hero from '../Hero/Hero'
+import Swiper from '../Hero/Carousel'
 
 export default function Home() {
   return (
     <section>
-        {/* Hero */}
-        <Hero />
-        {/* Slider */}
+        <Swiper />
         {/* Juegos Recomendados */}
     </section>
   )

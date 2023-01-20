@@ -17,3 +17,18 @@
     background-color: $mainBG;
 }
 
+.BtnLogin{
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(#9fbf00, #80ab00);
+    border:  none;
+    cursor: pointer;
+    font-weight: bold;
+    color:White;
+}
+
+.discount{
+    background-color: purple;
+    padding: 0.5rem ;
+    border-radius: 5px;
+}

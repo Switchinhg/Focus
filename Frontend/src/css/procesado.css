@@ -13,6 +13,20 @@
 .App {
   background-color: #dedede; }
 
+.BtnLogin {
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(#9fbf00, #80ab00);
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  color: White; }
+
+.discount {
+  background-color: purple;
+  padding: 0.5rem;
+  border-radius: 5px; }
+
 /* Navbar */
 .navbar ul {
   background-color: rgba(26, 26, 26, 0.9);
@@ -25,6 +39,45 @@
   .navbar ul a {
     color: white;
     text-decoration: none; }
+
+.Carousel {
+  height: 460px; }
+  .Carousel .sliderWrap {
+    display: flex;
+    justify-content: center; }
+  .Carousel .sliderInner {
+    width: 1096px;
+    height: 460px;
+    position: relative; }
+    .Carousel .sliderInner .sliderImg {
+      width: 1096px; }
+    .Carousel .sliderInner .chachara {
+      height: 150px;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(0deg, rgba(2, 0, 36, 0.8) 0%, rgba(2, 0, 28, 0.622269) 38%, rgba(2, 0, 32, 0.398179) 71%, rgba(0, 0, 0, 0.104062) 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem; }
+      .Carousel .sliderInner .chachara .deal p {
+        font-size: 20px;
+        color: White; }
+      .Carousel .sliderInner .chachara .deal p:last-child {
+        font-size: 50px;
+        color: White; }
+      .Carousel .sliderInner .chachara .BuyandPrice {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: white;
+        font-size: 25px; }
+      .Carousel .sliderInner .chachara .mainScreen {
+        color: black;
+        font-size: 20px;
+        font-weight: normal; }
 
 /* Form login */
 .formLogin {
@@ -44,10 +97,3 @@
       width: 100%;
       padding: 0.5rem 1rem;
       outline: none; }
-    .formLogin form .BtnLogin {
-      border-radius: 4px;
-      background: linear-gradient(#9fbf00, #80ab00);
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      color: White; }
