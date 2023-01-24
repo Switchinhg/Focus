@@ -3,13 +3,26 @@ import express from 'express'
 import mongoose from 'mongoose'
 import User from '../model/UserModel.js'
 import JWT from 'jsonwebtoken'
+import nodemailer from 'nodemailer'
 /* JWT Time */
     const expTime = "1w"
 /* ----- */
+
+
 import dotenv from 'dotenv'
 import expressSession from 'express-session'
 dotenv.config()
 
+/* Nodemailer */
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth:{
+        user:process.env.EMAIL,
+        pass:process.env.PASS
+    }
+})
+
+/* --------- */
 
 /* Hash Password */
 import bcrypt from 'bcrypt'
@@ -81,6 +94,20 @@ userRouter.post('/users', (req,res)=>{
                     /* crear JWT */
                     const timestamp = Date.now()
                     const JasonWebToken = JWT.sign({email,timestamp},secretKey,{expiresIn:expTime})
+                    let mailOptions={
+                        from:`${process.env.EMAIL}`,
+                        to:email,
+                        subject:'CUENTA CREADA EN FOCUSG',
+                        text:'Creaste correctamente tu cuenta en FocusG! muchas gracias!'
+                    }
+                    transporter.sendMail(mailOptions, function(err,info){
+                        if(err){
+                            console.log(err)
+                        }
+                        else{
+                            console.log('Mail enviado', info.response)
+                        }
+                    })
                     /* crear session y asociarlo con el jwt del user */
                     req.session.user = {JasonWebToken}
                     return res.send({"success":true, JasonWebToken})
