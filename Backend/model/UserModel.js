@@ -3,7 +3,13 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
-    role: { type:String, required:false}
+    data:{type:Object, default:{
+      role:'user',
+      img:'',
+      username:'',
+      phone:''
+
+    }},
   });
 
   const User = mongoose.model('users', userSchema);

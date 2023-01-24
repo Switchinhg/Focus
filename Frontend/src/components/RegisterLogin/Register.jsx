@@ -1,11 +1,26 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { UsarAuth } from '../Context/UserContext'
 
 export default function Register() {
-    const navigate = useNavigate()
+  /* userContext */
+    const {usuarioActivo, Register} = UsarAuth()
+  
+  const navigate = useNavigate()
   const [err,setErr] = useState()
+
+  useEffect(() => {
+
+    if(usuarioActivo){
+      navigate('/')
+    }
+  
+    
+  }, [])
+
+
   const onSubmit = (e) =>{
     e.preventDefault()
     const email = e.target[0].value
@@ -21,22 +36,14 @@ export default function Register() {
     }
     setErr('')
 
-    fetch('http://localhost:8080/api/users',{
-      method:'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body:JSON.stringify({
-        email,
-        password
-      })
-    }).then(e=>e.json())
-    .then(d=>{ 
-      if(d.success === true){
+    Register(email,password)
+    .then(resp=>{ 
+      
+      if(resp.success === true){
         navigate('/')
-        localStorage.setItem('JWT', d.JasonWebToken)
+        localStorage.setItem('JWT', resp.JasonWebToken)
       }
-      setErr(d.err)
+      setErr(resp.err)
     })
 
   }

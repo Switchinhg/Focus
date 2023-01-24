@@ -3,6 +3,9 @@ import express from 'express'
 import mongoose from 'mongoose'
 import User from '../model/UserModel.js'
 import JWT from 'jsonwebtoken'
+/* JWT Time */
+    const expTime = "1w"
+/* ----- */
 import dotenv from 'dotenv'
 import expressSession from 'express-session'
 dotenv.config()
@@ -24,6 +27,11 @@ userRouter.use(expressSession({
     secret:secretKey,
     resave:false,
     saveUninitialized:false,
+    cookie: {
+        secure: true, // serve secure cookies
+        httpOnly: true, // don't allow client-side JavaScript to access the cookie
+        maxAge: 60000 * 60 // expire the session after 1 minute
+    }
 }))
 
 
@@ -46,10 +54,11 @@ userRouter.post('/users', (req,res)=>{
                     console.log('logeado')
                     /* crear JWT */
                     const timestamp = Date.now()
-                    const JasonWebToken = JWT.sign({email,timestamp},secretKey,{expiresIn:'1h'})
+                    const JasonWebToken = JWT.sign({email,timestamp},secretKey,{expiresIn:expTime})
                     /* crear session y asociarlo con el jwt del user */
                     req.session.user = {JasonWebToken}
 
+                    console.log(req.session.user)
                     return res.send({"success":true, JasonWebToken})
                 }else{
                     return res.send({"success":false,err})
@@ -67,11 +76,11 @@ userRouter.post('/users', (req,res)=>{
                         return res.send({"success":false,"err":"Usuario ya existe"})
                         
                     }
-                    const newUser = new User({email, password, role})
+                    const newUser = new User({email, password})
                     newUser.save().then(()=>console.log("usuario Creado", newUser))
                     /* crear JWT */
                     const timestamp = Date.now()
-                    const JasonWebToken = JWT.sign({email,timestamp},secretKey,{expiresIn:'1h'})
+                    const JasonWebToken = JWT.sign({email,timestamp},secretKey,{expiresIn:expTime})
                     /* crear session y asociarlo con el jwt del user */
                     req.session.user = {JasonWebToken}
                     return res.send({"success":true, JasonWebToken})
@@ -89,21 +98,28 @@ userRouter.post('/users', (req,res)=>{
 
 /* Middleware protegido */
 
-const checkAuth = (req,res ,next)=>{
-    if(!req.session.user){
+const checkAuth = (req, res, next)=>{
+    /* buscar header auth con el jwt */
+    const authHeader = req.headers.authorization
+    if(!authHeader){
         return res.status(401).json({message:'unauthorized'})
     }
-    console.log(req.session.user)
     /* Verificar JWT */
     try {
+            const token = authHeader.split(' ')[1];
+            const verif = JWT.verify(token, secretKey)
 
-            const verif = JWT.verify(req.session.user.JasonWebToken, secretKey)
-            console.log(verif)
+            if (verif.exp < Date.now() / 1000){
+                /* JWT expirado */
+                
+            }else{
+                /* se pasa el jwt para la ruta */
+                req.user = verif
+    
+                next()
+            }
 
-            /* se pasa el jwt para la ruta */
-            req.user = verif
-
-            next()
+         
     }
     catch{
         return res.status(401).json({message:'unauthorized'})
@@ -113,7 +129,8 @@ const checkAuth = (req,res ,next)=>{
 userRouter.get('/users' , checkAuth ,(req,res)=>{
     User.findOne({email:req.user.email},function(err,user){
         /* Poner que devuelva el user.data */
-        res.send(user)
+        user.data.email=req.user.email
+        res.send(user.data)
     })
 })
 

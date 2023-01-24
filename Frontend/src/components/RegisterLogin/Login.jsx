@@ -1,11 +1,22 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import React, { useState,useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import {UsarAuth} from '../Context/UserContext'
+
 
 export default function Login() {
-  const navigate = useNavigate()
+
+  /* UserContext */
+    const {usuarioActivo,Login} = UsarAuth()
+
+    /* navigate */
+    const navigate = useNavigate()
 
   const [err,setErr] = useState()
+
+
+  
+
+  
   const onSubmit = (e) =>{
     e.preventDefault()
     const email = e.target[0].value
@@ -21,21 +32,14 @@ export default function Login() {
     }
     setErr('')
 
-    fetch('http://localhost:8080/api/users',{
-      method:'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body:JSON.stringify({
-        email,
-        password,
-        action:"login"
-      })
-    }).then(e=>e.json())
-    .then(d=>{ 
-      if(d.success === true){
+    /* funcion Login en context */
+    Login(email,password)
+    .then(resp=>{ 
+      console.log('entrene then')
+      if(resp.success === true){
+        console.log('entrene resp')
         navigate('/')
-        localStorage.setItem('JWT', d.JasonWebToken)
+        localStorage.setItem('JWT', resp.JasonWebToken)
       }
       setErr('Contraseña o email incorrecto')
     })
