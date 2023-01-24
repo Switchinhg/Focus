@@ -35,6 +35,7 @@ export default function Login() {
     .then(d=>{ 
       if(d.success === true){
         navigate('/')
+        localStorage.setItem('JWT', d.JasonWebToken)
       }
       setErr('Contraseña o email incorrecto')
     })

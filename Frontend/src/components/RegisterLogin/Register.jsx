@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom'
 
 export default function Register() {
+    const navigate = useNavigate()
   const [err,setErr] = useState()
   const onSubmit = (e) =>{
     e.preventDefault()
@@ -33,6 +34,7 @@ export default function Register() {
     .then(d=>{ 
       if(d.success === true){
         navigate('/')
+        localStorage.setItem('JWT', d.JasonWebToken)
       }
       setErr(d.err)
     })
