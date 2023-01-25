@@ -14,6 +14,9 @@ export default function Navbar() {
           </li>
           <li> {usuarioActivo? <p>Hola {usuarioActivo.email}</p> :null}</li>
           {/* Tienda */}
+          <li>
+            <Link to="/games">Games</Link>
+          </li>
           {/* Sobre la tienda */}
           <li>
             {usuarioActivo? <button onClick={()=>delog()}>Salirse</button>:

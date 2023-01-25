@@ -6,8 +6,10 @@ import Login from './components/RegisterLogin/Login'
 import Register from './components/RegisterLogin/Register'
 import './css/procesado.css'
 import { UsarAuth } from './components/Context/UserContext'
-import RPLogin from './components/RutasProtegidas/RPLogin'
+import RPLogin, { Admin } from './components/RutasProtegidas/RPLogin'
 import { useEffect } from 'react'
+import AddGame from './components/AddGame/AddGame'
+import GameCatalogue from './components/GameCatalogue/GameCatalogue'
 
 function App() {
   const [loading,setLoading]= useState(true)
@@ -33,6 +35,10 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={ <RPLogin usuarioActivo={usuarioActivo}> <Login /> </RPLogin>}/>
           <Route path='/registro' element={<RPLogin usuarioActivo={usuarioActivo}> <Register/> </RPLogin>}/>
+          {/* Game Catalogue */}
+          <Route path='/games' element={<GameCatalogue />}/>
+          {/* Admin Add Games */}
+          <Route path='/addGames' element={<Admin usuarioActivo={usuarioActivo}><AddGame/></Admin>}/>
 
 
 

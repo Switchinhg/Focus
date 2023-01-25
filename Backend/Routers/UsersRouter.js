@@ -125,7 +125,7 @@ userRouter.post('/users', (req,res)=>{
 
 /* Middleware protegido */
 
-const checkAuth = (req, res, next)=>{
+export const checkAuth = (req, res, next)=>{
     /* buscar header auth con el jwt */
     const authHeader = req.headers.authorization
     if(!authHeader){
@@ -151,6 +151,16 @@ const checkAuth = (req, res, next)=>{
     catch{
         return res.status(401).json({message:'unauthorized'})
     }
+}
+
+export const isAdmin =(req,res , next)=>{
+    User.findOne({email:req.user.email},function(err,user){
+        if( user.data.role === "admin"){
+            next()
+        }else{
+            res.json({success:false,err:'usuario no es admin'})
+        }
+    })
 }
 
 userRouter.get('/users' , checkAuth ,(req,res)=>{
