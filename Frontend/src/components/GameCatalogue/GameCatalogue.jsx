@@ -6,7 +6,7 @@ export default function GameCatalogue() {
     useEffect( () => {
 
         async function getGames(){
-            const resp = await fetch('http://localhost:8080/api/games',{
+            const resp = await fetch(`${import.meta.env.VITE_APP_FETCH}/api/games`,{
                 method:'GET'
             })
             setGames( await resp.json())

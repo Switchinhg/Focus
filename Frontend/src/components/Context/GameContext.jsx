@@ -18,7 +18,7 @@ export default function GameContextProvider({children}) {
     async function AddGame(name,img,video,description,price,tags,pcMinSpecs,releaseDate){
         
         console.log('entro en addGame')
-        const resp = await fetch('http://localhost:8080/api/games',{
+        const resp = await fetch(`${import.meta.env.VITE_APP_FETCH}/api/games`,{
         method:'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export default function GameContextProvider({children}) {
       return data
   }
   
-  /* Funcion de RemoveGame */
+  /* Funcion de RemoveGame  TODO*/
   async function RemoveGame(email,password){
      const resp = await fetch('http://localhost:8080/api/users',{
       method:'POST',

@@ -18,7 +18,7 @@ export default function UserContext({children}) {
     
     /* Funcion de Login */
     async function Login(email,password){
-      const resp = await fetch('http://localhost:8080/api/users',{
+      const resp = await fetch(`${import.meta.env.VITE_APP_FETCH}/api/users`,{
         method:'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -40,7 +40,7 @@ export default function UserContext({children}) {
   
   /* Funcion de Registro */
   async function Register(email,password){
-     const resp = await fetch('http://localhost:8080/api/users',{
+     const resp = await fetch(`${import.meta.env.VITE_APP_FETCH}/api/users`,{
       method:'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ export default function UserContext({children}) {
 
   async function getUserData(JWT){
     console.log('entre en getUserData')
-    const userDataPre = await fetch('http://localhost:8080/api/users',{
+    const userDataPre = await fetch(`${import.meta.env.VITE_APP_FETCH}/api/users`,{
       headers: {
         Authorization: `Bearer ${JWT}`
       }
