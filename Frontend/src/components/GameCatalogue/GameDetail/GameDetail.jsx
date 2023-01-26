@@ -1,28 +1,54 @@
 import React,{useEffect,useState} from 'react'
 import { useParams } from 'react-router-dom'
+import { usarCart } from '../../Context/CartContext'
 
 
 export default function GameDetail() {
     const [loading,setLoading] = useState(true)
+    const [dis,setDisabled] = useState(false)
     const [game, setGame] = useState()
     const {id} = useParams()
 
-    console.log(id)
+    const {cart,addToCart,clearCart,deleteProd,totalCost} = usarCart()
+
+    /* Add to cart */
+
+    console.log("cart en gameDetail")
+    console.log(cart)
 
     useEffect(()=>{
         async function getGame(){ 
             const gameFetch = await fetch(`${import.meta.env.VITE_APP_FETCH}/api/games/${id}`,{
                 method:'GET'
             })
-            setGame(await gameFetch.json())
+            const gameFetteched = await gameFetch.json()
+            setGame(gameFetteched)
+            const found = cart.find(el=>el.game === gameFetteched._id)
+            if(found){
+                setDisabled(true)
+                console.log('entre en find')
+            }else{
+                console.log('NO entre en find')
+                setDisabled(false)
+            }
         }
         getGame()
 
         setLoading(false)
 
-        console.log(game)
 
     },[])
+
+    const agregarJuego = (id) =>{
+        setDisabled(true)
+        addToCart(id)
+    }
+    const sacarJuego = (id)=>{
+        setDisabled(false)
+        deleteProd(id)
+    }
+ 
+
 
   return (
     <div className='gameDetail'>
@@ -60,11 +86,11 @@ export default function GameDetail() {
                             <p className='tag'>{game.tags.newIn??'NEW IN'}</p>
                         </div>
 
-                        <p>{game.releaseDate}</p>
+                        <p>Release date: {game.releaseDate}</p>
                     </div>
                     <div className="buyNOW">
-                        <button>Buy NOW</button>
-                        <button>Add to cart</button>
+                        <button onClick={()=>sacarJuego(game._id)} disabled={!dis} >X</button>
+                        <button  onClick={()=>agregarJuego(game._id)} disabled={dis} >Add to cart</button>
                     </div>
                 </div>
 

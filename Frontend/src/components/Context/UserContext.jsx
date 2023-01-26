@@ -77,7 +77,11 @@ export default function UserContext({children}) {
     }
   }
 
-  /* Function change or delete user Data */
+  /* TODO Function change or delete user Data */
+
+
+
+  /* ---------- */
 
   async function delog(){
     localStorage.removeItem('JWT')

@@ -11,6 +11,7 @@ import { useEffect } from 'react'
 import AddGame from './components/AddGame/AddGame'
 import GameCatalogue from './components/GameCatalogue/GameCatalogue'
 import GameDetail from './components/GameCatalogue/GameDetail/GameDetail'
+import Cart from './components/cartWidget/Cart'
 
 function App() {
   const [loading,setLoading]= useState(true)
@@ -40,6 +41,8 @@ function App() {
           <Route path='/games' element={<GameCatalogue />}/>
           {/* Game Detail */}
           <Route path='/game/:id' element={<GameDetail/>}/>
+          {/* Cart */}
+          <Route path='/cart' element={<Cart/>}/>
           {/* Admin Add Games */}
           <Route path='/addGames' element={<Admin usuarioActivo={usuarioActivo}><AddGame/></Admin>}/>
 

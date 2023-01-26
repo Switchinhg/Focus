@@ -37,7 +37,7 @@ export default function Navbar() {
             <div className='flex'>
               {usuarioActivo.role === 'admin'?<Link to="/AddGames">Admin</Link>:null}
               {/* CART */}
-
+              <Link to={`/cart`}>Carrito</Link>
               {/*------*/}
               <p>Logged as {username}</p>
               <button onClick={()=>delog()}>Salirse</button>
