@@ -32,3 +32,19 @@
     padding: 0.5rem ;
     border-radius: 5px;
 }
+
+.flex{
+    display: flex;
+    gap: 1rem;
+}
+.tags{
+    display: flex;
+    gap: .5rem;
+}
+.tag{
+    background-color: rgba(128, 128, 128, 0.534);
+    box-shadow: 1px 1px 5px black;
+    border-radius: 10px;
+    width:fit-content;
+    padding: 0.5rem;
+}

@@ -1,0 +1,59 @@
+.gameDetail{
+    min-height: $minHeight;
+    display: flex;
+    justify-content: center;
+
+    .game{
+        // height: 500px;
+        display: flex;
+        margin: 2rem;
+
+        // border: solid black 1px;
+
+
+        .imgySpecs{
+            div{
+                img{
+                    height: 400px ;
+                }
+            }
+        }
+        .gameData{
+            padding: 1rem;
+            height: 480px ;
+            max-width: 720px;
+            min-width: 420px;
+            position: relative;
+
+            .nameyPrice{
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+            .description{
+                padding: 0.5rem;
+                max-height: 200px;
+            }
+            .tagsydate{
+                padding: 1rem 0.5rem;
+                display: flex; 
+                flex-direction: column;
+                gap: .5rem;
+            }
+            .buyNOW{
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                padding: 2rem ;
+                display: flex;
+                gap: 0.5rem;
+                button{
+                    padding: 0.5rem 1rem;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}

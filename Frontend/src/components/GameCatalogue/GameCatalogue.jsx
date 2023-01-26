@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function GameCatalogue() {
     const [games,setGames] = useState()
@@ -30,7 +31,7 @@ export default function GameCatalogue() {
         <div>TAGS - TAGS - TAGS - TAGS - TAGS - TAGS - TAGS </div>
 
         {games?games.map(e=>
-        <div key={e._id} className='game'>
+        <Link to={`/game/${e._id}`} key={e._id} className='game'>
             <div className='img'>
                 <img src={e.img.store} alt="" />
             </div>
@@ -42,7 +43,7 @@ export default function GameCatalogue() {
                 {e.tags?.newIn? <p>NEW IN</p>:null}
                 <p>$ {e.price} USD</p>
             </div>
-        </div>
+        </Link>
 
             ):null}
 

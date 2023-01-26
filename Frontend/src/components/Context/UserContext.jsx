@@ -10,7 +10,7 @@ export default function UserContext({children}) {
 
     useEffect(() => {
       /* Mandar JWT */
-/* get and validate jsw before sending */
+      /* TODO get and validate jsw before sending */
       getUserData(localStorage.getItem('JWT'))
 
       setLoading(false)
@@ -76,6 +76,8 @@ export default function UserContext({children}) {
       setUsuarioActivo(userData)
     }
   }
+
+  /* Function change or delete user Data */
 
   async function delog(){
     localStorage.removeItem('JWT')

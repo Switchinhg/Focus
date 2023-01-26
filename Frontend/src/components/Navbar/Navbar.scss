@@ -1,14 +1,22 @@
-.navbar ul{
-    background-color: $backgroundColor;
+.navbar {
+    
+    .align{
+        align-items: center;
+    }
+
+    ul{
+        background-color: $backgroundColor;
     box-shadow: 1px 2px 10px  $boxshadow ;
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     list-style-type: none;
+    color: white;
     
     & a{
         color:$mainColor;
         text-decoration: none;
+    }
     }
 }

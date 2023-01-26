@@ -36,6 +36,17 @@ ProductRouter.get('/games', (req,res)=>{
             
         })
 })
+ProductRouter.get('/games/:id',(req,res)=>{
+    const {id} = req.params
+    console.log(id)
+    game.findById(id, function(err,game){
+        if(err){
+            console.log('error',err)
+        }
+        res.send(game)
+    })
+
+})
 
 
 export default ProductRouter

@@ -10,6 +10,7 @@ import RPLogin, { Admin } from './components/RutasProtegidas/RPLogin'
 import { useEffect } from 'react'
 import AddGame from './components/AddGame/AddGame'
 import GameCatalogue from './components/GameCatalogue/GameCatalogue'
+import GameDetail from './components/GameCatalogue/GameDetail/GameDetail'
 
 function App() {
   const [loading,setLoading]= useState(true)
@@ -37,6 +38,8 @@ function App() {
           <Route path='/registro' element={<RPLogin usuarioActivo={usuarioActivo}> <Register/> </RPLogin>}/>
           {/* Game Catalogue */}
           <Route path='/games' element={<GameCatalogue />}/>
+          {/* Game Detail */}
+          <Route path='/game/:id' element={<GameDetail/>}/>
           {/* Admin Add Games */}
           <Route path='/addGames' element={<Admin usuarioActivo={usuarioActivo}><AddGame/></Admin>}/>
 
