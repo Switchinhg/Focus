@@ -71,7 +71,6 @@ userRouter.post('/users', (req,res)=>{
                     /* crear session y asociarlo con el jwt del user */
                     req.session.user = {JasonWebToken}
 
-                    console.log(req.session.user)
                     return res.send({"success":true, JasonWebToken})
                 }else{
                     return res.send({"success":false,err})
@@ -102,7 +101,6 @@ userRouter.post('/users', (req,res)=>{
                     }
                     transporter.sendMail(mailOptions, function(err,info){
                         if(err){
-                            console.log(err)
                         }
                         else{
                             console.log('Mail enviado', info.response)

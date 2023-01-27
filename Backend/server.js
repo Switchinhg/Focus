@@ -24,7 +24,7 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASS
 const connection = mongoose.connection;
 
 connection.once('open', () => {
-    console.log("MongoDB database connection established successfully");
+    console.log("Conectado a la base de MongoDB");
 });
 
 app.use(express.urlencoded({extended:true}))

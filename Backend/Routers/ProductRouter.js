@@ -11,23 +11,39 @@ const ProductRouter = express.Router();
 
 ProductRouter.post('/games' ,checkAuth,isAdmin, (req,res)=>{
     const { name,img,video,description,price,tags,pcMinSpecs,releaseDate } = req.body
-    // console.log(req.body)
-
 
     try{
         const newProd = new game({name,img,video,description,price,tags,pcMinSpecs,releaseDate})
-        console.log('juego creado', newProd)
         newProd.save().then(e=>console.log('Juego Creado y guardado'))
     }catch{
-        console.log('errrorrrrrrrrr')
     }
 
 })
+
+
+
+ProductRouter.post('/games/cart', (req,res)=>{
+    const {gamesID} = req.body
+    
+    game.find({_id: { $in: gamesID }}, function(err,games){
+
+        if(err){
+            res.send({"success":false,err})
+        }
+
+        res.send(games)
+        
+    })
+
+})
+
+
+
+
 ProductRouter.get('/games', (req,res)=>{
         game.find({}, function(err,games){
 
             if(err){
-                console.log('errorrr')
                 res.send({"success":false,err})
             }
 
@@ -38,10 +54,8 @@ ProductRouter.get('/games', (req,res)=>{
 })
 ProductRouter.get('/games/:id',(req,res)=>{
     const {id} = req.params
-    console.log(id)
     game.findById(id, function(err,game){
         if(err){
-            console.log('error',err)
         }
         res.send(game)
     })
