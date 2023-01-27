@@ -30,8 +30,6 @@ export default function UserContext({children}) {
         })
       })
       const data = await resp.json()
-      console.log("data")
-      console.log(data)
       if(data.success === true){
        await getUserData(data.JasonWebToken)
       }
@@ -51,8 +49,6 @@ export default function UserContext({children}) {
       })
     })
     const data = await resp.json()
-    console.log("data")
-    console.log(data)
     if(data.success === true){
       await getUserData(data.JasonWebToken)
     }
@@ -60,7 +56,6 @@ export default function UserContext({children}) {
   }
 
   async function getUserData(JWT){
-    console.log('entre en getUserData')
     const userDataPre = await fetch(`${import.meta.env.VITE_APP_FETCH}/api/users`,{
       headers: {
         Authorization: `Bearer ${JWT}`

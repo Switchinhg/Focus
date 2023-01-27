@@ -19,11 +19,9 @@ export default function GameCatalogue() {
         
     }, [])
 
-    console.log(games)
 
     if(!games)return <h1>Cargando...</h1>
     
-    console.log(games)
   return (
     <section className='gameCatalogue'>
         

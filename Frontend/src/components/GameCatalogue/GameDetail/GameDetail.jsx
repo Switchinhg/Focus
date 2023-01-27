@@ -13,8 +13,6 @@ export default function GameDetail() {
 
     /* Add to cart */
 
-    console.log("cart en gameDetail")
-    console.log(cart)
 
     useEffect(()=>{
         async function getGame(){ 
@@ -26,9 +24,7 @@ export default function GameDetail() {
             const found = cart.find(el=>el.game === gameFetteched._id)
             if(found){
                 setDisabled(true)
-                console.log('entre en find')
             }else{
-                console.log('NO entre en find')
                 setDisabled(false)
             }
         }

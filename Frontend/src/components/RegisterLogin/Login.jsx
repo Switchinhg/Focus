@@ -35,9 +35,7 @@ export default function Login() {
     /* funcion Login en context */
     Login(email,password)
     .then(resp=>{ 
-      console.log('entrene then')
       if(resp.success === true){
-        console.log('entrene resp')
         navigate('/')
         localStorage.setItem('JWT', resp.JasonWebToken)
       }

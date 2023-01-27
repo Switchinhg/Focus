@@ -17,7 +17,6 @@ export default function GameContextProvider({children}) {
     /* Funcion de AddGame */
     async function AddGame(name,img,video,description,price,tags,pcMinSpecs,releaseDate){
         
-        console.log('entro en addGame')
         const resp = await fetch(`${import.meta.env.VITE_APP_FETCH}/api/games`,{
         method:'POST',
         headers: {
@@ -36,8 +35,6 @@ export default function GameContextProvider({children}) {
         })
       })
       const data = await resp.json()
-      console.log("data")
-      console.log(data)
       return data
   }
   
@@ -54,8 +51,6 @@ export default function GameContextProvider({children}) {
       })
     })
     const data = await resp.json()
-    console.log("data")
-    console.log(data)
     if(data.success === true){
       await getUserData(data.JasonWebToken)
     }
@@ -64,7 +59,6 @@ export default function GameContextProvider({children}) {
 
   /* Funcion de Editar juego */
   async function EditGame(){
-    console.log('entre en getUserData')
     const userDataPre = await fetch('http://localhost:8080/api/users',{
       headers: {
         Authorization: `Bearer ${JWT}`

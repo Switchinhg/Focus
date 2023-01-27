@@ -8,9 +8,6 @@ export const usarCart = () => useContext(CartContext);
 export default function CartContextP({children}) {
     const [cart,setCart] = useState(JSON.parse(localStorage.getItem('cart')) || [])
 
-    useEffect(()=>{
-        console.log(cart)
-    },[cart])
 
 
     /* AddToCart */
@@ -28,9 +25,9 @@ export default function CartContextP({children}) {
 
     }
     /* Total */
-    function totalCost(){
-        // cart.reduce((acc, cv)=>acc+ cv.price, 0)
-        // console.log(cart.reduce((acc, cv)=>acc+ cv, 0))
+    function totalCost(infogames){
+        return infogames.reduce((acum, i) => acum + i.price, 0);
+
     }
     /* BorrarCarrito */
     function clearCart(){

@@ -13,9 +13,8 @@ export default function Navbar() {
     if(usuarioActivo){
       setUsername(usuarioActivo.email.split('@')[0])
     }
-  },[])
+  },[usuarioActivo])
 
-  console.log(usuarioActivo)
   return (
     <section className='navbar' >
       <nav>
