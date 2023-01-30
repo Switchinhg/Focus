@@ -137,6 +137,8 @@
     .addGameWrap form input {
       width: 200px;
       padding: 0.5rem 1rem; }
+    .addGameWrap form textarea {
+      resize: none; }
 
 /* game Catalogue */
 .gameCatalogue {
@@ -157,8 +159,9 @@
       flex-grow: 1;
       padding: 1rem; }
     .gameCatalogue .game .img img {
-      object-fit: contain;
-      height: 150px; }
+      object-fit: cover;
+      height: 150px;
+      width: 377px; }
     .gameCatalogue .game .price {
       padding: 1rem;
       display: flex;

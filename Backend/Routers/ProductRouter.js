@@ -79,5 +79,15 @@ ProductRouter.delete('/games/:id',checkAuth,isAdmin, (req,res)=>{
 
     })
 })
+ProductRouter.get('/swiper-games',  (req,res)=>{
+    game.aggregate([
+        { $match: { "tags.newIn": true } },
+        { $sample: { size: 5 } }
+      ], function(err,games){
+        if(err){console.log('err',err)}
+
+        console.log(games)
+      });
+})
 
 export default ProductRouter

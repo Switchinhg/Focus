@@ -9,6 +9,8 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper";
 
 export default function Carousel() {
+
+  /* Get 10 random games  */
   return (
     <Swiper
     slidesPerView={1}

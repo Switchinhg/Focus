@@ -39,7 +39,6 @@ export default function GameCatalogue() {
                 <p>{e.description}</p>
             </div>
             <div className='price'>
-                {e.tags?.newIn? <p>NEW IN</p>:null}
                 <p>{e.price === 0? 'FREE' :"$ "+e.price + " USD"}</p>
             </div>
         </Link>

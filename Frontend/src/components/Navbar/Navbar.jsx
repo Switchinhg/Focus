@@ -3,17 +3,33 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link} from 'react-router-dom'
 import { UsarAuth } from '../Context/UserContext'
+import {useNavigate} from 'react-router-dom'
+
 
 export default function Navbar() {
   const [username, setUsername] = useState()
   const {delog} = UsarAuth()
   const {usuarioActivo} = UsarAuth()
 
+  /* redirect */
+  const redirect = useNavigate()
+
+
   useEffect(()=>{
     if(usuarioActivo){
       setUsername(usuarioActivo.email.split('@')[0])
     }
   },[usuarioActivo])
+
+
+  const salirse = () =>{
+    delog()
+
+
+    setTimeout(() => {
+      redirect('/login')
+    }, 1000);
+  }
 
   return (
     <section className='navbar' >
@@ -39,7 +55,7 @@ export default function Navbar() {
               <Link to={`/cart`}>Carrito</Link>
               {/*------*/}
               <p>Logged as {username}</p>
-              <button onClick={()=>delog()}>Salirse</button>
+              <button onClick={()=>salirse()}>Salirse</button>
             </div>
             :
               <Link to="/login">Entrar</Link>

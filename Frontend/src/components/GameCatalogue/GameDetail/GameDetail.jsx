@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { usarCart } from '../../Context/CartContext'
 import { UsarGame } from '../../Context/GameContext'
 import { UsarAuth } from '../../Context/UserContext'
+import {useNavigate} from 'react-router-dom'
 
 
 export default function GameDetail() {
@@ -14,6 +15,9 @@ export default function GameDetail() {
     const { usuarioActivo } = UsarAuth()
     const {cart,addToCart,deleteProd} = usarCart()
     const {DeleteGame} = UsarGame()
+
+    /* redirect */
+    const redirect = useNavigate()
 
     /* Add to cart */
 
@@ -51,11 +55,19 @@ export default function GameDetail() {
         deleteProd(id)
     }
  
+    const BorrarJuego  = (id) =>{
+        DeleteGame(id)
+        setTimeout(() => {
+            redirect('/games')
+        }, 1000);
+
+    }
 
 
   return (
     <div className='gameDetail'>
         {loading?
+        /* Poner Spinner */
             <h3>Loading...</h3>
         :
             game?
@@ -80,7 +92,7 @@ export default function GameDetail() {
                             <p>{game.price === 0? 'FREE' :"$ "+game.price}</p>
                             {console.log(usuarioActivo)}
                             {usuarioActivo?.role === "admin"?
-                            <button className='btn' onClick={()=>DeleteGame(game._id)}>Borrar Juego</button>
+                            <button className='btn' onClick={()=>BorrarJuego(game._id)}>Borrar Juego</button>
                             : null}
                         </div>
                         <div className="description">
@@ -90,7 +102,8 @@ export default function GameDetail() {
                     <div className="tagsydate">
 
                         <div className="tags">
-                            <p className='tag'>{game.tags.newIn??'NEW IN'}</p>
+                        {game.tags?.newIn? <p className='tag'>NEW IN</p>:null}
+
                         </div>
 
                         <p>Release date: {game.releaseDate}</p>

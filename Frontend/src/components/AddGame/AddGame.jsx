@@ -1,11 +1,18 @@
 import React from 'react'
 import { UsarGame } from '../Context/GameContext'
 import moment from 'moment'
+import {useNavigate} from 'react-router-dom'
 
 export default function AddGame() {
   const {AddGame} = UsarGame()
+    /* redirect */
+  const redirect = useNavigate()
+
+
+
   const onSubmit = (e) =>{
     e.preventDefault()
+
 
       const name = e.target[0].value
       const img = {
@@ -16,7 +23,12 @@ export default function AddGame() {
       const video = e.target[4].value
       const description = e.target[5].value
       const price = e.target[6].value
-      const tags = ''
+      const tags = {
+        newIn:true,
+        sale:{sale:false,
+            percent:0,
+            until:Date.now()
+        },}
       const releaseDate = e.target[7].value
       const pcMinSpecs =  {processor:'ryzen 7 3200X',
       ram:'16gb',
@@ -25,6 +37,11 @@ export default function AddGame() {
 
     AddGame(name,img,video,description,price,tags,pcMinSpecs,releaseDate)
 
+
+
+setTimeout(() => {
+  redirect('/games')
+}, 1000);
 
 
 
@@ -47,7 +64,7 @@ export default function AddGame() {
           </div>
             <p>video</p>
             <input type="text" name='video' id='video' placeholder='Video - YT' />
-            <textarea name="description" id="description" cols="30" rows="10" required placeholder='Description'></textarea>
+            <textarea name="description" id="description" cols="30" rows="10" required placeholder='Description' maxLength="210"></textarea>
             <div>
             <input type="number" name="price" id="price" placeholder='Price (0 if free)' required />
 
