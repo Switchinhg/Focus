@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react'
 import { useParams } from 'react-router-dom'
 import { usarCart } from '../../Context/CartContext'
 import { UsarGame } from '../../Context/GameContext'
+import { UsarAuth } from '../../Context/UserContext'
 
 
 export default function GameDetail() {
@@ -10,6 +11,7 @@ export default function GameDetail() {
     const [game, setGame] = useState()
     const {id} = useParams()
 
+    const { usuarioActivo } = UsarAuth()
     const {cart,addToCart,deleteProd} = usarCart()
     const {DeleteGame} = UsarGame()
 
@@ -36,6 +38,9 @@ export default function GameDetail() {
 
 
     },[])
+    useEffect(()=>{
+        console.log(usuarioActivo)
+    },[usuarioActivo])
 
     const agregarJuego = (id) =>{
         setDisabled(true)
@@ -73,7 +78,10 @@ export default function GameDetail() {
                         <div className="nameyPrice">
                             <h1>{game.name}</h1>
                             <p>{game.price === 0? 'FREE' :"$ "+game.price}</p>
+                            {console.log(usuarioActivo)}
+                            {usuarioActivo?.role === "admin"?
                             <button className='btn' onClick={()=>DeleteGame(game._id)}>Borrar Juego</button>
+                            : null}
                         </div>
                         <div className="description">
                             {game.description}

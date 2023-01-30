@@ -64,7 +64,7 @@ ProductRouter.get('/games/:id',(req,res)=>{
 })
 
 /* Borrar Juego */
-ProductRouter.delete('/games/:id', (req,res)=>{
+ProductRouter.delete('/games/:id',checkAuth,isAdmin, (req,res)=>{
     const { id } = req.params
 
     console.log(id)

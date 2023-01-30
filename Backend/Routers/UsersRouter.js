@@ -121,7 +121,7 @@ userRouter.post('/users', (req,res)=>{
     }
 })
 
-/* Middleware protegido */
+/* Middleware protegido  check if user send JWT*/
 
 export const checkAuth = (req, res, next)=>{
     /* buscar header auth con el jwt */
@@ -151,6 +151,7 @@ export const checkAuth = (req, res, next)=>{
     }
 }
 
+/* Check if is admin */
 export const isAdmin =(req,res , next)=>{
     User.findOne({email:req.user.email},function(err,user){
         if( user.data.role === "admin"){
