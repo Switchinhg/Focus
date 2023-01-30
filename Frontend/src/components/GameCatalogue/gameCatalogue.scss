@@ -18,8 +18,11 @@
             padding: 1rem;
         }
         .img{
-            width: 400px;
+            img{
+            object-fit:contain;
             height: 150px;
+            }
+
         }
         .price{
             padding: 1rem;

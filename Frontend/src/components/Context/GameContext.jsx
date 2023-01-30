@@ -39,22 +39,20 @@ export default function GameContextProvider({children}) {
   }
   
   /* Funcion de RemoveGame  TODO*/
-  async function RemoveGame(email,password){
-     const resp = await fetch('http://localhost:8080/api/users',{
-      method:'POST',
+  async function DeleteGame(id){
+     const resp = await fetch(`${import.meta.env.VITE_APP_FETCH}/api/games/${id}`,{
+      method:'DELETE',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('JWT')}`
       },
-      body:JSON.stringify({
-        email,
-        password
-      })
     })
-    const data = await resp.json()
-    if(data.success === true){
-      await getUserData(data.JasonWebToken)
+    // const data = await resp.json()
+    if(resp.success === true){
+      return "Game Deleted"
+    }else{
+      return "Game couldn't be deleted"
     }
-    return data
   }
 
   /* Funcion de Editar juego */
@@ -81,7 +79,7 @@ export default function GameContextProvider({children}) {
 
     const value = {
         AddGame,
-        RemoveGame,
+        DeleteGame,
         EditGame,
     }
 

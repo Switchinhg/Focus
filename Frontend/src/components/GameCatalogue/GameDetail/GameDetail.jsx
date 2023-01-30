@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import { useParams } from 'react-router-dom'
 import { usarCart } from '../../Context/CartContext'
+import { UsarGame } from '../../Context/GameContext'
 
 
 export default function GameDetail() {
@@ -9,7 +10,8 @@ export default function GameDetail() {
     const [game, setGame] = useState()
     const {id} = useParams()
 
-    const {cart,addToCart,clearCart,deleteProd,totalCost} = usarCart()
+    const {cart,addToCart,deleteProd} = usarCart()
+    const {DeleteGame} = UsarGame()
 
     /* Add to cart */
 
@@ -56,7 +58,7 @@ export default function GameDetail() {
                 <div className="imgySpecs">
                     <div>
                         {/* poner Carousel */}
-                        <img src={game.img.gameFootage} alt="" />
+                        <img src={ game.img.banner} alt="" />
                     </div>
                     <div>
                         <h4>PC min Specs</h4>
@@ -71,6 +73,7 @@ export default function GameDetail() {
                         <div className="nameyPrice">
                             <h1>{game.name}</h1>
                             <p>{game.price === 0? 'FREE' :"$ "+game.price}</p>
+                            <button className='btn' onClick={()=>DeleteGame(game._id)}>Borrar Juego</button>
                         </div>
                         <div className="description">
                             {game.description}

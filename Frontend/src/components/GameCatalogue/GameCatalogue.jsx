@@ -31,7 +31,7 @@ export default function GameCatalogue() {
         {games?games.map(e=>
         <Link to={`/game/${e._id}`} key={e._id} className='game'>
             <div className='img'>
-                <img src={e.img.store} alt="" />
+                <img src={e.img.banner} alt="" />
             </div>
             <div className='description'>
                 <h3>{e.name}</h3>
@@ -39,7 +39,7 @@ export default function GameCatalogue() {
             </div>
             <div className='price'>
                 {e.tags?.newIn? <p>NEW IN</p>:null}
-                <p>$ {e.price} USD</p>
+                <p>{e.price === 0? 'FREE' :"$ "+e.price + " USD"}</p>
             </div>
         </Link>
 

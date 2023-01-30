@@ -26,6 +26,13 @@
     font-weight: bold;
     color:White;
 }
+.btn{
+    padding: .5rem 1rem ;
+    &:hover{
+        cursor: pointer;
+    }
+    
+}
 
 .discount{
     background-color: purple;
