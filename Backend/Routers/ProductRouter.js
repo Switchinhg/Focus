@@ -79,15 +79,27 @@ ProductRouter.delete('/games/:id',checkAuth,isAdmin, (req,res)=>{
 
     })
 })
-ProductRouter.get('/swiper-games',  (req,res)=>{
-    game.aggregate([
+ProductRouter.get('/swiper-games', async (req,res)=>{
+    let games = []
+    games  = await game.aggregate([
         { $match: { "tags.newIn": true } },
-        { $sample: { size: 5 } }
-      ], function(err,games){
-        if(err){console.log('err',err)}
+        { $sample: { size: 5 } }],function(err,games){
+            return games
+    })
+    // console.log('games',games)
 
-        console.log(games)
-      });
+
+    // TODO hacer funcionar las etiquetas de sale
+    // const gamesSale = await game.aggregate([
+    //     {$match:{"tags.sale.sale":false}},
+    //     {$sample:{size:1}}],function(err,games){
+    //         return games
+    // })
+
+    games = [...games/* ,gamesSale */]
+
+    res.send({"success":true,games})
+
 })
 
 export default ProductRouter
