@@ -74,7 +74,20 @@
   background-color: rgba(255, 255, 255, 0); }
 
 .Carousel {
-  height: 460px; }
+  height: 460px;
+  /* 
+swiper-pagination-bullet
+ swiper-pagination-bullet-active
+
+*/ }
+  .Carousel .swiper-button-next, .Carousel .swiper-button-prev {
+    color: black;
+    padding: 5rem 2rem;
+    top: 38%; }
+  .Carousel .swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.9); }
+  .Carousel .swiper-pagination-bullet-active {
+    background: white; }
   .Carousel .sliderWrap {
     display: flex;
     justify-content: center; }

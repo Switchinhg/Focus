@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { useEffect ,useState} from 'react';
 import { usarCart } from '../Context/CartContext';
+import { Link } from 'react-router-dom';
 
 export default function Carousel() {
   const [swiperGames,setSwiperGames] = useState()
@@ -22,7 +23,6 @@ export default function Carousel() {
 
     if(!swiperGames)return <h1>LOADING...</h1>
 
-  /* Get 10 random games  */
   return (
     <Swiper
     slidesPerView={1}
@@ -32,14 +32,14 @@ export default function Carousel() {
       clickable: true
     }}
     centeredSlides={true}
-    autoplay={{delay:3000}}
+    autoplay={{delay:3000,disableOnInteraction: false,}}
     navigation={true}
     modules={[Autoplay,Pagination, Navigation]}
     className="Carousel"
   >
     {swiperGames.map(game=>
       <SwiperSlide>
-      <div className='sliderWrap'>
+      <Link to={`/game/${game._id}`} className='sliderWrap'>
         <div className='sliderInner'>
           <div className='chachara'>
             <div className='deal'>
@@ -54,7 +54,7 @@ export default function Carousel() {
           </div>
           <img className='sliderImg' src={game.img.banner} alt="" />
         </div>
-      </div>
+      </Link>
   </SwiperSlide>
     )}
   </Swiper>
