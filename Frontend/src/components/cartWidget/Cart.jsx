@@ -60,19 +60,24 @@ export default function Cart() {
             {infoGames && infoGames.length>0? 
             <>
             {infoGames.map(e=>
+            <>
             <div key={e._id} className='game'>
-
-                <h4>{e.name}</h4>
-                <p style={{color:'green'}}>U$S {e.price}</p>
-                </div>
+              <h4>{e.name}</h4>
+              <p style={{color:'green'}}>U$S {e.price}</p>
+            </div>
+            <hr />
+            </>
             )}
             <div className='buttonwrap'>
-                <p style={{width:'50px',alignSelf:'center',textAlign:'center'}}>Total U$S {totalCost(infoGames)}</p>
-                <button className='button' onClick={()=>hacerCompra()}>Comprar</button>
-                <button className='button' onClick={()=>borrarCompra()}>Borrar Carrito</button>
+              <div>
+
+                <button className='button' onClick={()=>borrarCompra()}>Clear Cart</button>
+                <button className='button' onClick={()=>hacerCompra()}>Buy</button>
+              </div>
+                <p>Total: <span style={{color:'green'}}> U$S {totalCost(infoGames)}</span></p>
             </div>
             </>
-            :<h4>Carrito vacio</h4>}
+            :<h4>Cart is empty</h4>}
         </div>
     </div>
   )

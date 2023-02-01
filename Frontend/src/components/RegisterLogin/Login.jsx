@@ -45,7 +45,7 @@ export default function Login() {
   return (
     <section className='formLogin'>
       <form onSubmit={onSubmit}>
-          <h1 style={{textAlign:'center'}}>ENTRAR</h1>
+          <h1 style={{textAlign:'center'}}>LOG IN</h1>
           <div> 
             <input type="email" name="email" id="email" placeholder='Email' required/>
           </div>

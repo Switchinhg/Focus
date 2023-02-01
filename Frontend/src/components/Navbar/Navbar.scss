@@ -17,6 +17,18 @@
     & a{
         color:$mainColor;
         text-decoration: none;
+        padding: .5rem 1rem;
+        border-radius: 10px;
+        &:hover{
+            background-color: $hovers;
+        }
     }
+    }
+    .logo{
+        a{
+            &:hover{
+                background-color: rgba(255, 255, 255, 0);
+            }
+        }
     }
 }

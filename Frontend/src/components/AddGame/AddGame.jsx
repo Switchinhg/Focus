@@ -5,6 +5,8 @@ import {useNavigate} from 'react-router-dom'
 
 export default function AddGame() {
   const {AddGame} = UsarGame()
+
+  document.title = `Admin Panel - FocusG`;
     /* redirect */
   const redirect = useNavigate()
 

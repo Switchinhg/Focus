@@ -38,9 +38,9 @@ export default function Navbar() {
           <div className='flex align'>
 
               <li className='logo'>
-                <Link to='/'>FocusG</Link>
+              <Link to='/'>FocusG</Link>
               </li>
-              
+
               {/* Tienda */}
               <li>
                 <Link to="/games">Games</Link>
@@ -49,16 +49,16 @@ export default function Navbar() {
           </div>
           <li>
             {usuarioActivo? 
-            <div className='flex'>
+            <div className='flex' style={{alignItems:'center'}}>
               {usuarioActivo.role === 'admin'?<Link to="/AddGames">Admin</Link>:null}
               {/* CART */}
-              <Link to={`/cart`}>Carrito</Link>
+              <Link to={`/cart`}>Cart</Link>
               {/*------*/}
-              <p>Logged as {username}</p>
-              <button onClick={()=>salirse()}>Salirse</button>
+              <p>Hi {username}!</p>
+              <button className='btn' onClick={()=>salirse()}>Log Out</button>
             </div>
             :
-              <Link to="/login">Entrar</Link>
+              <Link to="/login" className='btn'>Log In</Link>
           }
           </li>
           

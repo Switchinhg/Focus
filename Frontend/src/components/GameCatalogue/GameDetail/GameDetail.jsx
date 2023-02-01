@@ -42,9 +42,10 @@ export default function GameDetail() {
 
 
     },[])
-    useEffect(()=>{
-        console.log(usuarioActivo)
-    },[usuarioActivo])
+
+    if(game){
+        document.title = `${game.name} - FocusG`;
+    }
 
     const agregarJuego = (id) =>{
         setDisabled(true)
@@ -90,7 +91,6 @@ export default function GameDetail() {
                         <div className="nameyPrice">
                             <h1>{game.name}</h1>
                             <p>{game.price === 0? 'FREE' :"$ "+game.price}</p>
-                            {console.log(usuarioActivo)}
                             {usuarioActivo?.role === "admin"?
                             <button className='btn' onClick={()=>BorrarJuego(game._id)}>Borrar Juego</button>
                             : null}

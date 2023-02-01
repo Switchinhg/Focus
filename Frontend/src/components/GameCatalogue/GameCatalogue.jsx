@@ -5,6 +5,7 @@ export default function GameCatalogue() {
     const [games,setGames] = useState()
 
     useEffect( () => {
+    document.title = 'Games - FocusG';
 
         async function getGames(){
             const resp = await fetch(`${import.meta.env.VITE_APP_FETCH}/api/games`,{
