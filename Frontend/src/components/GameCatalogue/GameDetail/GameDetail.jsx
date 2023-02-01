@@ -4,6 +4,7 @@ import { usarCart } from '../../Context/CartContext'
 import { UsarGame } from '../../Context/GameContext'
 import { UsarAuth } from '../../Context/UserContext'
 import {useNavigate} from 'react-router-dom'
+import Loading from '../../Loading/Loading'
 
 
 export default function GameDetail() {
@@ -69,7 +70,7 @@ export default function GameDetail() {
     <div className='gameDetail'>
         {loading?
         /* Poner Spinner */
-            <h3>Loading...</h3>
+            <Loading />
         :
             game?
             <div className='game'>

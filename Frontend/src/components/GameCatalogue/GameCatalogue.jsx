@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Loading from '../Loading/Loading';
 
 export default function GameCatalogue() {
     const [games,setGames] = useState()
@@ -21,7 +22,7 @@ export default function GameCatalogue() {
     }, [])
 
 
-    if(!games)return <h1>Cargando...</h1>
+    if(!games)return <Loading />
     
   return (
     <section className='gameCatalogue'>

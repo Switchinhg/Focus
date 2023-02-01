@@ -9,6 +9,7 @@ import { Autoplay, Pagination, Navigation } from "swiper";
 import { useEffect ,useState} from 'react';
 import { usarCart } from '../Context/CartContext';
 import { Link } from 'react-router-dom';
+import Loading from '../Loading/Loading';
 
 export default function Carousel() {
   const [swiperGames,setSwiperGames] = useState()
@@ -21,7 +22,7 @@ export default function Carousel() {
     },[])
 
 
-    if(!swiperGames)return <h1>LOADING...</h1>
+    if(!swiperGames)return <Loading  height='460px'/>
 
   return (
     <Swiper

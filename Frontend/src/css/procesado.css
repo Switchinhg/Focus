@@ -260,3 +260,52 @@ swiper-pagination-bullet
       display: flex;
       justify-content: space-between;
       width: 400px; }
+
+/* Footer */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: rgba(26, 26, 26, 0.9);
+  box-shadow: -1px -2px 10px rgba(0, 0, 0, 0.65);
+  padding: 3rem; }
+  .footer .inline {
+    width: 100%;
+    display: flex;
+    justify-content: space-around; }
+  .footer .links {
+    display: flex;
+    align-items: center;
+    gap: 2rem; }
+    .footer .links a {
+      color: white;
+      text-decoration: none; }
+  .footer .socials {
+    display: flex;
+    gap: 1rem; }
+    .footer .socials a {
+      color: white; }
+    .footer .socials svg {
+      width: 32px;
+      height: 32px;
+      background-color: #1e293b;
+      padding: .4rem;
+      border-radius: 50%; }
+      .footer .socials svg:hover {
+        background-color: #5464ff;
+        border-radius: 50%;
+        cursor: pointer;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+  .footer hr {
+    height: 1px;
+    border-width: 0;
+    color: gray;
+    background-color: gray;
+    width: 100%;
+    margin: 3rem; }
+
+/* Loading */
+.loadingWrap {
+  min-height: calc(100vh - 73px); }

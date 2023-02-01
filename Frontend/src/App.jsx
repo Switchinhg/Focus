@@ -12,6 +12,7 @@ import AddGame from './components/AddGame/AddGame'
 import GameCatalogue from './components/GameCatalogue/GameCatalogue'
 import GameDetail from './components/GameCatalogue/GameDetail/GameDetail'
 import Cart from './components/cartWidget/Cart'
+import Footer from './components/Footer/Footer'
 
 function App() {
   const [loading,setLoading]= useState(true)
@@ -52,6 +53,8 @@ function App() {
           <Route path='*' element={<h1>NO ENCONTRADO</h1>} />
         </Routes>
           {/* Footer */}
+        <Footer />
+
       </Router>
 
     </div>

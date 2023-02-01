@@ -2,12 +2,11 @@ import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../Loading/Loading';
 
 export default function RPLogin({usuarioActivo,children}) {
     const [loading,setLoading]= useState(true)
     const navigate = useNavigate();
-    console.log("usuarioActivo")
-    console.log(usuarioActivo)
 
     useEffect(() => {
 
@@ -17,11 +16,13 @@ export default function RPLogin({usuarioActivo,children}) {
 
     setTimeout(() => {
       setLoading(false)
-    }, 1000);
+    }, 500);
       
     }, [usuarioActivo])
 
-    
+    if(loading){
+      return <Loading />
+    }
   return (
     <>
     {!loading && children}
