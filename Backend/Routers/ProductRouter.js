@@ -105,26 +105,15 @@ ProductRouter.get('/swiper-games', async (req,res)=>{
 ProductRouter.get('/games-under/:percent', async (req,res)=>{
     const {percent} = req.params
 
-
-    // game.find(
-    //     { $match:{ price: { $gt: 0, $lt: percent } }},
-    //     { $sample: { size: 2 } },function(err,games){
-    //         if(err){
-    //             res.send({"success":"false",err})
-    //             console.log("Juego no borrado", err)
-    //         }
-    //         res.send({"success":true})
-    //         console.log("juegoBorrado", games)
-    // })
     game.aggregate([
         { $match: { price: { $gt: 0, $lt: Number(percent) } } },
-        { $sample: { size: 10 } }
+        { $sample: { size: 5 } }
     ], function(err, games) {
         if (err) {
-            console.log("Error retrieving games:", err);
+            res.send({success: false, err})
             return;
         }
-        console.log("Random games:", games);
+        res.send({success: true, games})
     });
     
 
