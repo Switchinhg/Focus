@@ -12,6 +12,7 @@ export default function Home() {
   return (
     <section>
         <Swiper />
+        {/* lista de juegos menos de 10 dolares */}
         {/* Juegos Recomendados */}
     </section>
   )
