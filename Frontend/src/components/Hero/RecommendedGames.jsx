@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 
 export default function RecommendedGames() {
     const [recGames, setRecGames] = useState()
-    console.log("recGames")
-    console.log(recGames)
     useEffect(()=>{
         fetch(`${import.meta.env.VITE_APP_FETCH}/api/games-under/20`)
         .then(e=>e.json())
@@ -20,7 +18,7 @@ export default function RecommendedGames() {
         <div className='gamesWrap'>
 
         {recGames.map(e=>
-            <Link to={`/game/${e._id}`} className='game'>
+            <Link key={e._id} to={`/game/${e._id}`} className='game'>
             <div className='center'>
                 <p >{e.name}</p>
                 <p >{e.price} USD</p>

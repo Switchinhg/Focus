@@ -302,6 +302,9 @@
       justify-content: space-between;
       width: 400px; }
 
+.cart img {
+  width: 40px; }
+
 /* Footer */
 .footer {
   display: flex;

@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
       username:'',
       phone:''
 
-    }},
+    },
+    cart:{type:Object,required:false}},
   });
 
   const User = mongoose.model('users', userSchema);

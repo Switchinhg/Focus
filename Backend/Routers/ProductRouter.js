@@ -67,15 +67,12 @@ ProductRouter.get('/games/:id',(req,res)=>{
 ProductRouter.delete('/games/:id',checkAuth,isAdmin, (req,res)=>{
     const { id } = req.params
 
-    console.log(id)
     game.findByIdAndDelete(id,function(err,games){
         if(err){
             res.send({"success":"false",err})
-            console.log("Juego no borrado", err)
 
         }
         res.send({"success":true})
-        console.log("juegoBorrado", games)
 
     })
 })

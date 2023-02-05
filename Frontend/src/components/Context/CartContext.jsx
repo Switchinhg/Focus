@@ -8,13 +8,13 @@ export const usarCart = () => useContext(CartContext);
 export default function CartContextP({children}) {
     const [cart,setCart] = useState(JSON.parse(localStorage.getItem('cart')) || [])
 
+    // TODO hacer que se guarde el carrito en el sv
 
 
     /* AddToCart */
     function addToCart(game){
         setCart([...cart, {game}])
         localStorage.setItem('cart',JSON.stringify([...cart,{game}]))
-        
         return true
     }
     /* BorrarProd */
@@ -33,6 +33,7 @@ export default function CartContextP({children}) {
     function clearCart(){
         setCart([])
     }
+
 
 
 

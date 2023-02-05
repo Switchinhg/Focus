@@ -39,8 +39,8 @@ export default function Carousel() {
     className="Carousel"
   >
     {swiperGames.map(game=>
-      <SwiperSlide>
-      <Link to={`/game/${game._id}`} className='sliderWrap'>
+      <SwiperSlide key={game._id}>
+      <Link  to={`/game/${game._id}`} className='sliderWrap'>
         <div className='sliderInner'>
           <div className='chachara'>
             <div className='deal'>

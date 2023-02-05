@@ -60,13 +60,13 @@ export default function Cart() {
             {infoGames && infoGames.length>0? 
             <>
             {infoGames.map(e=>
-            <>
-            <div key={e._id} className='game'>
+            <div key={e._id} >
+            <div  className='game'>
               <h4>{e.name}</h4>
               <p style={{color:'green'}}>U$S {e.price}</p>
             </div>
             <hr />
-            </>
+            </div>
             )}
             <div className='buttonwrap'>
               <div>
