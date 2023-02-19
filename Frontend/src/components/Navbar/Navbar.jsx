@@ -46,6 +46,13 @@ export default function Navbar() {
               <li>
                 <Link to="/games">Games</Link>
               </li>
+              {usuarioActivo?
+                <li>
+                    <Link to="/library">Library</Link>
+                </li>
+              :
+                <></>
+              }
               {/* Sobre la tienda */}
           </div>
           <li>

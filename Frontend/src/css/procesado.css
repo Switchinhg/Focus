@@ -354,3 +354,7 @@
 /* Loading */
 .loadingWrap {
   min-height: calc(100vh - 73px); }
+
+/* Game Library */
+.GameLibrary {
+  min-height: calc(100vh - 73px); }

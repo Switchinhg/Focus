@@ -13,6 +13,7 @@ import GameCatalogue from './components/GameCatalogue/GameCatalogue'
 import GameDetail from './components/GameCatalogue/GameDetail/GameDetail'
 import Cart from './components/cartWidget/Cart'
 import Footer from './components/Footer/Footer'
+import GameLibrary from './components/GameLibrary/GameLibrary'
 
 function App() {
   const [loading,setLoading]= useState(true)
@@ -42,6 +43,8 @@ function App() {
           <Route path='/games' element={<GameCatalogue />}/>
           {/* Game Detail */}
           <Route path='/game/:id' element={<GameDetail/>}/>
+          {/* User Game Library  */}
+          <Route path='/library' element={<GameLibrary />}/>
           {/* Cart */}
           <Route path='/cart' element={<Cart/>}/>
           {/* Admin Add Games */}

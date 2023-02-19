@@ -170,6 +170,51 @@ userRouter.get('/users' , checkAuth ,(req,res)=>{
     })
 })
 
+userRouter.post('/library', checkAuth , (req,res)=>{
+
+    console.log("entro en router")
+    console.log(req.body.infoGames)
+
+
+    User.findOne({email:req.user.email},function(err,user){
+        const games = req.body.infoGames
+        if(err){
+            return res.send({"success":false, err})
+        }  
+        else if(games.length > 0){
+            games.map( game => {
+                user.library.push(game)
+            })
+        }
+        else{
+            user.library.push(games)
+        }
+
+        user.save((err) => {
+            if (err) {
+              console.error(err);
+            } else {
+              res.send({success:true})
+            }
+          });
+        
+         
+    })
+
+    // User.updateOne(
+    //     { email: req.body.email },
+    //     { $push: { library: ...games } },
+    //     (err, result) => {
+    //       if (err) {
+    //         console.log("err")
+    //         console.error(err);
+    //       } else {
+    //         console.log(result);
+    //       }
+    //     }
+    //   )
+})
+
 
 
 

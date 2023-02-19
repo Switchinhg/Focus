@@ -34,18 +34,39 @@ export default function Cart() {
       }, []);
 
 
-      const hacerCompra = () =>{
-             MySwal.fire({
-            title: "Compra realizada",
-            html: `<p>Gracias por comprar ${infoGames.map(
-              (i) =>  " " + i.name + " "
-            )} </p> `,
-            icon: "success",
-            confirmButtonText: "Continuar",
+      const hacerCompra = async () =>{
+
+        const library = await  fetch(`${import.meta.env.VITE_APP_FETCH}/api/library`,{
+          method:'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('JWT')}`
+          },
+          body:JSON.stringify({
+            infoGames
           })
-          setInfoGames('')
-          localStorage.removeItem('cart')
-          clearCart()
+        })
+          const getGames = await library.json()
+
+          if(getGames.success === true){
+
+            MySwal.fire({
+              title: "Compra realizada",
+              html: `<p>Gracias por comprar ${infoGames.map(
+                (i) =>  " " + i.name + " "
+              )} </p> `,
+              icon: "success",
+              confirmButtonText: "Continuar",
+            })
+            setInfoGames('')
+            localStorage.removeItem('cart')
+            clearCart()
+
+          }
+
+
+
+            
       }
       const borrarCompra = () =>{
           setInfoGames('')
@@ -73,6 +94,7 @@ export default function Cart() {
 
                 <button className='button' onClick={()=>borrarCompra()}>Clear Cart</button>
                 <button className='button' onClick={()=>hacerCompra()}>Buy</button>
+                <button className='button' onClick={()=>console.log(infoGames)}>Buy</button>
               </div>
                 <p>Total: <span style={{color:'green'}}> U$S {totalCost(infoGames)}</span></p>
             </div>
