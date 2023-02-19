@@ -10,10 +10,15 @@ import { useEffect ,useState} from 'react';
 import { usarCart } from '../Context/CartContext';
 import { Link } from 'react-router-dom';
 import Loading from '../Loading/Loading';
+import { UsarAuth } from '../Context/UserContext';
+import {useNavigate} from 'react-router-dom'
+
 
 export default function Carousel() {
   const [swiperGames,setSwiperGames] = useState()
   const {addToCart} = usarCart()
+  const {usuarioActivo} = UsarAuth()
+  const redirect = useNavigate()
 
     useEffect(()=>{
       fetch(`${import.meta.env.VITE_APP_FETCH}/api/swiper-games`)
@@ -50,7 +55,11 @@ export default function Carousel() {
             <div className='BuyandPrice'> 
             {game.tags.sale.sale?<p className='discount'>- {game.tags.sale.percent} %</p>:null}
               <p>{game.price === 0? 'FREE' :"$ "+game.price+" USD"}</p>
-              <button className='BtnLogin mainScreen' onClick={()=>addToCart(game._id)}> Add to cart</button>
+              {usuarioActivo?
+                <button className='BtnLogin mainScreen' onClick={()=>addToCart(game._id)}> Add to cart</button>
+              :
+              null
+              }
             </div>
           </div>
           <img className='sliderImg' src={game.img.banner} alt="" />

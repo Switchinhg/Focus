@@ -110,8 +110,17 @@ export default function GameDetail() {
                         <p>Release date: {game.releaseDate}</p>
                     </div>
                     <div className="buyNOW">
-                        <button onClick={()=>sacarJuego(game._id)} disabled={!dis} >X</button>
-                        <button  onClick={()=>agregarJuego(game._id)} disabled={dis} >Add to cart</button>
+                        {/* if not usuarioactivo remove add to cart button */}
+                        {usuarioActivo?
+                        <>
+                            <button onClick={()=>sacarJuego(game._id)} disabled={!dis} >X</button>
+                            <button  onClick={()=>agregarJuego(game._id)} disabled={dis} >Add to cart</button>
+                        </>
+                        : null}  
+
+
+
+
                     </div>
                 </div>
 

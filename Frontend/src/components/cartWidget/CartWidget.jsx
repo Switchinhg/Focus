@@ -11,10 +11,10 @@ export default function CartWidget() {
     > 
 
     {isShown?
-      <img className='gif' src="./cart.gif" alt="" />
+      <img className='gif' src="/cart.gif" alt="" />
       
       :
-      <img className='static' src="./cart.png" alt="" />
+      <img className='static' src="/cart.png" alt="" />
 
     }
 
