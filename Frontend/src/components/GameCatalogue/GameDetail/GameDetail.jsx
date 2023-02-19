@@ -24,6 +24,7 @@ export default function GameDetail() {
 
 
     useEffect(()=>{
+        window.scrollTo(0, 0)
         async function getGame(){ 
             const gameFetch = await fetch(`${import.meta.env.VITE_APP_FETCH}/api/games/${id}`,{
                 method:'GET'

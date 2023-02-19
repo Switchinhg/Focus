@@ -45,7 +45,7 @@ export default function Carousel() {
   >
     {swiperGames.map(game=>
       <SwiperSlide key={game._id}>
-      <Link  to={`/game/${game._id}`} className='sliderWrap'>
+      <div className='sliderWrap'>
         <div className='sliderInner'>
           <div className='chachara'>
             <div className='deal'>
@@ -57,14 +57,16 @@ export default function Carousel() {
               <p>{game.price === 0? 'FREE' :"$ "+game.price+" USD"}</p>
               {usuarioActivo?
                 <button className='BtnLogin mainScreen' onClick={()=>addToCart(game._id)}> Add to cart</button>
-              :
-              null
+                :
+                <button className='BtnLogin mainScreen' onClick={()=>redirect('/login')}> Log in</button>
               }
             </div>
           </div>
-          <img className='sliderImg' src={game.img.banner} alt="" />
+          <Link  to={`/game/${game._id}`}>
+          <img className='sliderImg' src={game.img.banner} alt={`${game.name} banner image`} />
+          </Link>
         </div>
-      </Link>
+      </div>
   </SwiperSlide>
     )}
   </Swiper>
