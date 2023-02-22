@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { usarCart } from '../../Context/CartContext'
 import { UsarGame } from '../../Context/GameContext'
 import { UsarAuth } from '../../Context/UserContext'
@@ -13,7 +13,7 @@ export default function GameDetail() {
     const [game, setGame] = useState()
     const {id} = useParams()
 
-    const { usuarioActivo } = UsarAuth()
+    const { usuarioActivo,getUserData } = UsarAuth()
     const {cart,addToCart,deleteProd} = usarCart()
     const {DeleteGame} = UsarGame()
 
@@ -39,6 +39,7 @@ export default function GameDetail() {
             }
         }
         getGame()
+        getUserData(localStorage.getItem('JWT'))
 
         setLoading(false)
 
@@ -64,6 +65,15 @@ export default function GameDetail() {
             redirect('/games')
         }, 1000);
 
+    }
+
+    const verSiEstaJuego = () =>{
+        const found = usuarioActivo.library.find(el=>el._id === game._id)
+        if(found){
+            return true
+        }else{
+            return false
+        }
     }
 
 
@@ -111,8 +121,10 @@ export default function GameDetail() {
                         <p>Release date: {game.releaseDate}</p>
                     </div>
                     <div className="buyNOW">
-                        {/* if not usuarioactivo remove add to cart button */}
                         {usuarioActivo?
+                            //if game is in usuarioActivo.library do not show buttons for adding to cart
+                            verSiEstaJuego()?
+                            <h3>Already in <Link to="/library">Library</Link></h3>:
                         <>
                             <button onClick={()=>sacarJuego(game._id)} disabled={!dis} >X</button>
                             <button  onClick={()=>agregarJuego(game._id)} disabled={dis} >Add to cart</button>

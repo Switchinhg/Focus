@@ -164,31 +164,30 @@ export const isAdmin =(req,res , next)=>{
 
 userRouter.get('/users' , checkAuth ,(req,res)=>{
     User.findOne({email:req.user.email},function(err,user){
-        /* Poner que devuelva el user.data */
-        user.data.email=req.user.email
-        res.send(user.data)
+        let usuario = {
+            role: user.data.role,
+            img: user.data.img,
+            username: user.data.username,
+            phone: user.data.phone,
+            library: user.data.library,
+            cart:user.data.cart,
+            _id: user.data._id,
+            email: req.user.email
+        }
+
+        res.send(usuario)
     })
 })
 
+/* cuando compra un juego, se le agrega a la libreria */
 userRouter.post('/library', checkAuth , (req,res)=>{
-
-    console.log("entro en router")
-    console.log(req.body.infoGames)
-
-
     User.findOne({email:req.user.email},function(err,user){
         const games = req.body.infoGames
         if(err){
             return res.send({"success":false, err})
         }  
-        else if(games.length > 0){
-            games.map( game => {
-                user.library.push(game)
-            })
-        }
-        else{
-            user.library.push(games)
-        }
+
+        games.map( game => {user.data.library.push(game)})
 
         user.save((err) => {
             if (err) {
@@ -200,19 +199,6 @@ userRouter.post('/library', checkAuth , (req,res)=>{
         
          
     })
-
-    // User.updateOne(
-    //     { email: req.body.email },
-    //     { $push: { library: ...games } },
-    //     (err, result) => {
-    //       if (err) {
-    //         console.log("err")
-    //         console.error(err);
-    //       } else {
-    //         console.log(result);
-    //       }
-    //     }
-    //   )
 })
 
 
