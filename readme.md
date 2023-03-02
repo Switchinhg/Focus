@@ -11,8 +11,8 @@
     /cart - carrito 
     /addGame - si el usuario es admin - para agregar videjuego a la tienda
     
-    ## Instalación
-
+    
+## Instalación
 para clonar el repositorio usar:
 
 ```bash
