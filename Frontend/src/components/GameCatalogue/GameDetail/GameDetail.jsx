@@ -68,7 +68,7 @@ export default function GameDetail() {
     }
 
     const verSiEstaJuego = () =>{
-        const found = usuarioActivo.library.find(el=>el._id === game._id)
+        const found = usuarioActivo.library.find(el=>el === game._id)
         if(found){
             return true
         }else{

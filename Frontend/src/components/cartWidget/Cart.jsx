@@ -4,11 +4,13 @@ import { usarCart } from '../Context/CartContext';
 /* Sweet alert */
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import { UsarAuth } from '../Context/UserContext';
 
 export default function Cart() {
     const [cart,setCart] = useState(JSON.parse(localStorage.getItem('cart')) || [])
     const [infoGames,setInfoGames] = useState()
     const {totalCost,clearCart} = usarCart()
+    const {getUserData} = UsarAuth()
     const MySwal = withReactContent(Swal)
 
     useEffect(() => {
@@ -49,7 +51,7 @@ export default function Cart() {
           const getGames = await library.json()
 
           if(getGames.success === true){
-
+            getUserData(localStorage.getItem('JWT'))
             MySwal.fire({
               title: "Compra realizada",
               html: `<p>Gracias por comprar ${infoGames.map(
@@ -94,7 +96,6 @@ export default function Cart() {
 
                 <button className='button' onClick={()=>borrarCompra()}>Clear Cart</button>
                 <button className='button' onClick={()=>hacerCompra()}>Buy</button>
-                <button className='button' onClick={()=>console.log(infoGames)}>Buy</button>
               </div>
                 <p>Total: <span style={{color:'green'}}> U$S {totalCost(infoGames)}</span></p>
             </div>

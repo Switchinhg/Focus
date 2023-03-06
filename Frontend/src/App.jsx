@@ -14,6 +14,7 @@ import GameDetail from './components/GameCatalogue/GameDetail/GameDetail'
 import Cart from './components/cartWidget/Cart'
 import Footer from './components/Footer/Footer'
 import GameLibrary from './components/GameLibrary/GameLibrary'
+import RPLibrary from './components/RutasProtegidas/RPLibrary'
 
 function App() {
   const [loading,setLoading]= useState(true)
@@ -44,9 +45,9 @@ function App() {
           {/* Game Detail */}
           <Route path='/game/:id' element={<GameDetail/>}/>
           {/* User Game Library  */}
-          <Route path='/library' element={<GameLibrary />}/>
+          <Route path='/library' element={<RPLibrary usuarioActivo={usuarioActivo}><GameLibrary /></RPLibrary>}/>
           {/* Cart */}
-          <Route path='/cart' element={<Cart/>}/>
+          <Route path='/cart' element={<RPLibrary usuarioActivo={usuarioActivo}><Cart/></RPLibrary>}/>
           {/* Admin Add Games */}
           <Route path='/addGames' element={<Admin usuarioActivo={usuarioActivo}><AddGame/></Admin>}/>
 

@@ -1,3 +1,14 @@
 .GameLibrary{
     min-height: $minHeight;
+    .game{
+        display:flex;
+        align-items:center;
+        gap:1rem;
+        img{
+            height:50px;
+            border-radius:100px;
+            aspect-ratio:1;
+            object-fit:cover;
+        }
+    }
 }

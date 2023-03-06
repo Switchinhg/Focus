@@ -187,7 +187,7 @@ userRouter.post('/library', checkAuth , (req,res)=>{
             return res.send({"success":false, err})
         }  
 
-        games.map( game => {user.data.library.push(game)})
+        games.map( game => {user.data.library.push(game._id)})
 
         user.save((err) => {
             if (err) {
