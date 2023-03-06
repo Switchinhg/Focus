@@ -10,3 +10,24 @@
     /game/{id} - detalle de videojuego
     /cart - carrito 
     /addGame - si el usuario es admin - para agregar videjuego a la tienda
+    
+    
+## Instalación
+para clonar el repositorio usar:
+
+```bash
+git clone https://github.com/Switchinhg/Focus.git
+```
+
+Iniciar el backend
+```code
+cd backend
+
+node server.js
+```
+Instalar módulos y Iniciar el Frontend
+```code
+cd frontend
+npm install
+npm run dev
+```
