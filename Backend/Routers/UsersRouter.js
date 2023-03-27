@@ -180,25 +180,21 @@ userRouter.get('/users' , checkAuth ,(req,res)=>{
 })
 
 /* cuando compra un juego, se le agrega a la libreria */
-userRouter.post('/library', checkAuth , (req,res)=>{
-    User.findOne({email:req.user.email},function(err,user){
-        const games = req.body.infoGames
-        if(err){
-            return res.send({"success":false, err})
-        }  
+userRouter.post('/library', checkAuth ,async (req,res)=>{
+    const games = req.body.infoGames.map( game =>game._id)
 
-        games.map( game => {user.data.library.push(game._id)})
+    User.findOneAndUpdate(
+        { email: req.user.email }, // Search criteria
+        { $push: { "data.library": {$each: games} } }, // Update data
+        function(err, user) {
+          if (err) {
+            console.error(err);
+          } else {
+            res.send({success:true})
+          }
+        }
+      );
 
-        user.save((err) => {
-            if (err) {
-              console.error(err);
-            } else {
-              res.send({success:true})
-            }
-          });
-        
-         
-    })
 })
 
 
