@@ -104,7 +104,6 @@ const loginOcrearCuenta = async function(req,res){
 
 
 const getUsers = (req,res)=>{
-    console.log('entre en getUsers')
     User.findOne({email:req.user.email},function(err,user){
         let usuario = {
             role: user.data.role,

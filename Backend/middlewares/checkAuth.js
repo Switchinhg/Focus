@@ -6,7 +6,6 @@ const  secretKey = process.env.SECRET_KEY
 
 /* Middleware protegido  check if user send JWT*/
 const checkAuth = (req,res,next)=>{
-    console.log('entre en check auth')
 
     /* buscar header auth con el jwt */
     const authHeader = req.headers.authorization
