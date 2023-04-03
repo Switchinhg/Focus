@@ -1,6 +1,7 @@
 
 import express from 'express'
-import { checkAuth, isAdmin } from './UsersRouter.js';
+import checkAuth from '../middlewares/checkAuth.js';
+import isAdmin from '../middlewares/isAdmin.js';
 
 /* import schema */
 import game from '../model/GameModel.js'
