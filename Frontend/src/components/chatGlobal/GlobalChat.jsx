@@ -15,7 +15,7 @@ export default function GlobalChat() {
   const sendMessage = (e) => {
     e.preventDefault();
     if(e.target[0].value.length !== 0){
-      socketRef.current.emit('mensaje', { sender:usuarioActivo.email,mensaje: e.target[0].value });
+      socketRef.current.emit('mensaje', { sender:usuarioActivo.email.split('@')[0],message: e.target[0].value });
       e.target[0].value = '';
       setError('')
     }else{
@@ -56,7 +56,7 @@ const randdom = () =>{
             <div key={randdom()} style={{display:'flex',paddingLeft:10}}>
               <p style={{color:'green'}}>{msg.sender}</p>
               <p>&nbsp; &gt;&gt; &nbsp;</p>
-              <p> {msg.mensaje} </p>
+              <p> {msg.message} </p>
               
             </div>
             
@@ -66,7 +66,7 @@ const randdom = () =>{
 
       <form onSubmit={sendMessage}>
         <p style={{color:"red"}}>{error}</p>
-        <input type="text" name="" id="" />
+        <input type="text" name="" id="" placeholder='Type Something!' />
       </form>
 
       </div>

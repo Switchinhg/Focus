@@ -6,10 +6,13 @@ dotenv.config()
 /* Import Router */
 import ProductRouter from './Routers/ProductRouter.js'
 import UserRouter from './Routers/UsersRouter.js'
+
 /* ----------------- */
 
 /* Import and Connect MongoDB */
 import connectDB from './persistencia/connectDB.js'
+import messageFunctions from './persistencia/messageFunctions.js'
+
 connectDB()
 /* ----------------- */
 
@@ -29,10 +32,6 @@ const server= app.listen(PORT, ()=>console.log('Servidor inicializado en el puer
 app.use('/api', ProductRouter)
 app.use('/api', UserRouter)
 
-/* ---------------------- EXPERIMENTAL ---------------------- */
-
-
-
 
 /* mensajes */
 
@@ -41,34 +40,24 @@ app.use('/api', UserRouter)
 import {Server} from 'socket.io'
 const io = new Server(server, {
     cors: {
-      origin: `${process.env.SERVER_DIR}`,
+      origin: `*`,
       methods: ['GET', 'POST']
     }
   });
 
-io.on('connection', (socket)=>{
+io.on('connection', async(socket)=>{
     /* siempre que se conecte un usuario recibe todos los mensajes */
     console.log('Un cliente se ha conectado');
 
-    // mensajesjs.msg.getAll()
-    // .then(data =>{
-    //     usuario.emit('historial', data)
-    // })
-
-    socket.emit('historial', mensajes)
-
+    /* le envia el historial al usuario */
+    const mensajes = await messageFunctions.buscarMensages()
+      socket.emit('historial', mensajes)
 
     /* al recibir mensaje nuevo */
-    socket.on('mensaje' , (data) =>{
-        console.log(data)
-        // data.fecha = new Date().toLocaleString()
-        // mensajesjs.msg.save(data)
-        mensajes.push(data)
+    socket.on('mensaje' ,async (data) =>{
+        let hoy = new Date().toLocaleDateString()
+        await messageFunctions.guardarMensaje(data.sender,data.message,hoy)
         io.sockets.emit('mensajes', data)
     })
-    // const newProd = (prod) =>{io.sockets.emit('newProd', prod)}
-    // exports.newProd = newProd
 })
 
-
-const mensajes = []
