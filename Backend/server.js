@@ -41,7 +41,7 @@ app.use('/api', UserRouter)
 import {Server} from 'socket.io'
 const io = new Server(server, {
     cors: {
-      origin: 'http://localhost:5173',
+      origin: `${process.env.SERVER_DIR}`,
       methods: ['GET', 'POST']
     }
   });
