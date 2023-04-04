@@ -1,3 +1,4 @@
+import User from '../model/UserModel.js'
 /* Check if is admin */
 const isAdmin =(req,res , next)=>{
     User.findOne({email:req.user.email},function(err,user){

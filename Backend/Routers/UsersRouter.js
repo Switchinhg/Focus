@@ -17,12 +17,8 @@ const userRouter = express.Router();
 
 /* Inicializar express session */
 userRouter.use(sessionMiddleware)
-
 userRouter.post('/users', userController.loginOcrearCuenta)
-
-
 userRouter.get('/users' , checkAuth , userController.getUsers)
-
 /* cuando compra un juego, se le agrega a la libreria */
 userRouter.post('/library', checkAuth ,userController.library)
 

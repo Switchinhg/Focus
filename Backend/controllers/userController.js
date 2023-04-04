@@ -39,7 +39,7 @@ const loginOcrearCuenta = async function(req,res){
                     
                     console.log('logeado')
                     /* crear JWT */
-                    const timestamp = Date.now()
+                    const timestamp = Date.now().toLocaleString()
                     const JasonWebToken = JWT.sign({email,timestamp},secretKey,{expiresIn:expTime})
                     /* crear session y asociarlo con el jwt del user */
                     req.session.user = {JasonWebToken}
