@@ -1,0 +1,26 @@
+.chat{
+    min-height: $minHeight;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .chatWrap{
+        width: 700px;
+
+        .messeges{
+            width: 100%;
+            height: 400px;
+            border: solid black 1px;
+            overflow-y: scroll;
+        }
+        input{
+            width: 100%;
+            padding: 0.5rem 1rem;
+            margin: .5rem 0;
+        }
+        input:focus{
+            outline: none;
+            box-shadow: 0 0 5px black;
+        }
+    }
+}

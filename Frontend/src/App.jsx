@@ -15,6 +15,7 @@ import Cart from './components/cartWidget/Cart'
 import Footer from './components/Footer/Footer'
 import GameLibrary from './components/GameLibrary/GameLibrary'
 import RPLibrary from './components/RutasProtegidas/RPLibrary'
+import GlobalChat from './components/chatGlobal/GlobalChat'
 
 function App() {
   const [loading,setLoading]= useState(true)
@@ -46,6 +47,8 @@ function App() {
           <Route path='/game/:id' element={<GameDetail/>}/>
           {/* User Game Library  */}
           <Route path='/library' element={<RPLibrary usuarioActivo={usuarioActivo}><GameLibrary /></RPLibrary>}/>
+          {/* Global Chat  */}
+          <Route path='/chat' element={<RPLibrary usuarioActivo={usuarioActivo}><GlobalChat /></RPLibrary>}/>
           {/* Cart */}
           <Route path='/cart' element={<RPLibrary usuarioActivo={usuarioActivo}><Cart/></RPLibrary>}/>
           {/* Admin Add Games */}

@@ -28,3 +28,47 @@ const server= app.listen(PORT, ()=>console.log('Servidor inicializado en el puer
 /* Routes */
 app.use('/api', ProductRouter)
 app.use('/api', UserRouter)
+
+/* ---------------------- EXPERIMENTAL ---------------------- */
+
+
+
+
+/* mensajes */
+
+
+/* SV */
+import {Server} from 'socket.io'
+const io = new Server(server, {
+    cors: {
+      origin: 'http://localhost:5173',
+      methods: ['GET', 'POST']
+    }
+  });
+
+io.on('connection', (socket)=>{
+    /* siempre que se conecte un usuario recibe todos los mensajes */
+    console.log('Un cliente se ha conectado');
+
+    // mensajesjs.msg.getAll()
+    // .then(data =>{
+    //     usuario.emit('historial', data)
+    // })
+
+    socket.emit('historial', mensajes)
+
+
+    /* al recibir mensaje nuevo */
+    socket.on('mensaje' , (data) =>{
+        console.log(data)
+        // data.fecha = new Date().toLocaleString()
+        // mensajesjs.msg.save(data)
+        mensajes.push(data)
+        io.sockets.emit('mensajes', data)
+    })
+    // const newProd = (prod) =>{io.sockets.emit('newProd', prod)}
+    // exports.newProd = newProd
+})
+
+
+const mensajes = []

@@ -53,6 +53,13 @@ export default function Navbar() {
               :
                 <></>
               }
+              {usuarioActivo?
+                <li>
+                    <Link to="/chat">Global Chat</Link>
+                </li>
+              :
+                <></>
+              }
               {/* Sobre la tienda */}
           </div>
           <li>
